@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverb - Spotify's Creative Production Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override for iframe - no landing page */
+        body {
+            overflow-y: auto !important;
+        }
+
+        .landing-overlay {
+            display: none !important;
+        }
+
+        /* Ensure animations trigger immediately */
+        body {
+            overflow-x: hidden;
+        }
+
+        .hero-eyebrow,
+        .hero-title,
+        .hero-description,
+        .hero-stats {
+            animation-play-state: running !important;
+        }
+
+        /* Navbar simplified for iframe */
+        .navbar {
+            position: sticky;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="site-revealed">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="Reverb logo.png" alt="Reverb">
+            </a>
+            <div class="nav-menu">
+                <a href="#work">Work</a>
+                <a href="#showreel">Showreel</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-video-bg">
+            <video autoplay loop muted playsinline>
+                <source src="showreel-2025.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-container">
+            <div class="hero-eyebrow">Spotify's Creative Production Studio</div>
+            <h1 class="hero-title">We bring Spotify's<br>biggest stories to life</h1>
+            <p class="hero-description">From high-profile interviews with Trevor Noah and Daniel Ek to interactive microsites and stunning animations—Reverb is the creative force behind Spotify's most memorable moments.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Projects in 2024</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">Global Studios</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">LON • NYC • STO</div>
+                    <div class="stat-label">Our Locations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showreel Feature -->
+    <section class="showreel-feature" id="showreel">
+        <div class="container">
+            <div class="feature-badge">2025 Showreel</div>
+            <h2 class="section-title">Our Latest Work</h2>
+            <div class="showreel-embed">
+                <iframe src="https://drive.google.com/file/d/1ZKnvVxjroel_CpI0_I57FqHdZEGhUt1P/preview"
+                        width="100%"
+                        height="100%"
+                        allow="autoplay"></iframe>
+            </div>
+            <p class="showreel-caption">Reverb 2025 Showreel — Spotify's Creative Production Studio</p>
+        </div>
+    </section>
+
+    <!-- Work Grid - Simplified -->
+    <section class="work-grid" id="work">
+        <div class="container">
+            <div class="grid-header">
+                <h2>What We Create</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Video Production -->
+                <article class="card" data-category="video">
+                    <a href="https://www.youtube.com/watch?v=IPbD9PZ5FP4" target="_blank" class="card-link">
+                        <div class="card-image">
+                            <img src="https://img.youtube.com/vi/IPbD9PZ5FP4/maxresdefault.jpg" alt="">
+                            <div class="card-badge">Video Production</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Trevor Noah Interview Series</h3>
+                            <p>High-profile conversations with Ta-Nehisi Coates, Lupita Nyong'o, Malcolm Gladwell, and more.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="card" data-category="video">
+                    <a href="https://www.youtube.com/watch?v=q3xN1iYeTNI" target="_blank" class="card-link">
+                        <div class="card-image">
+                            <img src="https://img.youtube.com/vi/q3xN1iYeTNI/maxresdefault.jpg" alt="">
+                            <div class="card-badge">Video Production</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Daniel Ek: CEO Interviews</h3>
+                            <p>Filmed interviews with Ali Abdaal, Jules Terpak, Acquired Podcast, and CNBC.</p>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="card" data-category="microsite">
+                    <a href="https://newsroom.spotify.com/2024-wrapped/" target="_blank" class="card-link">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1611339555312-e607c8352fd7?w=800&h=600&fit=crop" alt="">
+                            <div class="card-badge">Interactive Microsite</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Wrapped 2024</h3>
+                            <p>Annual year-end campaign microsite with interactive elements and data visualizations.</p>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="Reverb logo.png" alt="Reverb" class="footer-logo">
+                    <p>Spotify's Creative Production Studio</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Reverb. Part of Spotify's Communications team.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
