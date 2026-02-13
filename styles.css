@@ -519,7 +519,7 @@ body.site-revealed .hero-stats {
 .stat-num {
     font-size: 48px;
     font-weight: 900;
-    color: var(--reverb-coral);
+    color: var(--black);
     margin-bottom: 8px;
 }
 
