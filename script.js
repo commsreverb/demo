@@ -3,15 +3,33 @@
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const navHeight = 64;
-            const targetPosition = target.offsetTop - navHeight - 20;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+        // Check if this is a dropdown filter link
+        const filterValue = this.getAttribute('data-filter');
+        if (filterValue) {
+            e.preventDefault();
+            // Trigger the filter
+            applyFilter(filterValue);
+            // Scroll to work section
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navHeight = 64;
+                const targetPosition = target.offsetTop - navHeight - 20;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        } else {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navHeight = 64;
+                const targetPosition = target.offsetTop - navHeight - 20;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
 });
@@ -20,24 +38,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const filterTabs = document.querySelectorAll('.filter-tab');
 const cards = document.querySelectorAll('.card');
 
+// Reusable filter function
+function applyFilter(filter) {
+    // Update active tab
+    filterTabs.forEach(t => t.classList.remove('active'));
+    const matchingTab = Array.from(filterTabs).find(t => t.getAttribute('data-filter') === filter);
+    if (matchingTab) {
+        matchingTab.classList.add('active');
+    }
+
+    // Filter cards
+    cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
 filterTabs.forEach(tab => {
     tab.addEventListener('click', function() {
         const filter = this.getAttribute('data-filter');
-
-        // Update active tab
-        filterTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-
-        // Filter cards
-        cards.forEach(card => {
-            const category = card.getAttribute('data-category');
-
-            if (filter === 'all' || category === filter) {
-                card.classList.remove('hidden');
-            } else {
-                card.classList.add('hidden');
-            }
-        });
+        applyFilter(filter);
     });
 });
 

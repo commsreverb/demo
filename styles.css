@@ -115,6 +115,44 @@ body {
     transform: scale(1.05);
 }
 
+/* Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--black);
+    min-width: 180px;
+    border: 2px solid var(--reverb-lime);
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-top: 12px;
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--white) !important;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-content a:hover {
+    background: var(--reverb-lime);
+    color: var(--black) !important;
+}
+
 /* Hero */
 .hero {
     position: relative;
