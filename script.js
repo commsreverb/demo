@@ -150,7 +150,7 @@ window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
-            const heroVideo = document.querySelector('.hero-video-bg iframe');
+            const heroVideo = document.querySelector('.hero-video-bg video');
             if (heroVideo && scrolled < 800) {
                 heroVideo.style.transform = `scale(1.2) translateY(${scrolled * 0.3}px)`;
             }

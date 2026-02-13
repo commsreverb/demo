@@ -190,7 +190,7 @@ body {
     pointer-events: none;
 }
 
-.hero-video-bg iframe {
+.hero-video-bg video {
     width: 100%;
     height: 100%;
     object-fit: cover;
