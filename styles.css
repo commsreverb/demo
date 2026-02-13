@@ -59,7 +59,7 @@ body {
 .navbar {
     position: sticky;
     top: 0;
-    background: var(--white);
+    background: var(--black);
     border-bottom: 3px solid var(--reverb-coral);
     z-index: 1000;
     padding: 16px 0;
@@ -91,7 +91,7 @@ body {
 
 .nav-menu a {
     text-decoration: none;
-    color: var(--gray-900);
+    color: var(--white);
     font-weight: 500;
     font-size: 15px;
     transition: color 0.2s;
