@@ -274,8 +274,8 @@ body.landing-active {
 .navbar {
     position: sticky;
     top: 0;
-    background: var(--black);
-    border-bottom: 3px solid var(--reverb-coral);
+    background: transparent;
+    border-bottom: none;
     z-index: 1000;
     padding: 16px 0;
 }
@@ -306,7 +306,7 @@ body.landing-active {
 
 .nav-menu a {
     text-decoration: none;
-    color: var(--white);
+    color: var(--black);
     font-weight: 500;
     font-size: 15px;
     transition: color 0.2s;
@@ -317,7 +317,7 @@ body.landing-active {
 }
 
 .nav-cta {
-    background: var(--reverb-coral);
+    background: var(--black);
     color: var(--white) !important;
     padding: 10px 24px;
     border-radius: 500px;
@@ -340,13 +340,14 @@ body.landing-active {
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--black);
+    background: rgba(0, 0, 0, 0.95);
     min-width: 180px;
-    border: 2px solid var(--reverb-lime);
+    border: 2px solid var(--black);
     border-radius: 8px;
     padding: 8px 0;
     margin-top: 12px;
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .nav-dropdown:hover .dropdown-content {
@@ -394,11 +395,11 @@ body.landing-active {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 100%;
-    min-height: 100vh;
+    min-width: 120%;
+    min-height: 120vh;
     width: auto;
     height: auto;
-    transform: translate(-50%, -50%) scale(1.3);
+    transform: translate(-50%, -50%) scale(1.5);
     object-fit: cover;
     transition: transform 0.5s ease-out;
     will-change: transform;

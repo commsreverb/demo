@@ -183,6 +183,33 @@ document.querySelectorAll('.grid-header h2').forEach(el => {
     revealObserver.observe(el);
 });
 
+// CTA section
+document.querySelectorAll('.cta-section h2').forEach(el => {
+    el.classList.add('scroll-bounce');
+    revealObserver.observe(el);
+});
+
+document.querySelectorAll('.cta-section p').forEach(el => {
+    el.classList.add('scroll-fade');
+    revealObserver.observe(el);
+});
+
+document.querySelectorAll('.btn-cta').forEach(el => {
+    el.classList.add('scroll-pop');
+    revealObserver.observe(el);
+});
+
+document.querySelectorAll('.cta-note').forEach(el => {
+    el.classList.add('scroll-fade');
+    revealObserver.observe(el);
+});
+
+// About section elements
+document.querySelectorAll('.about-text h2').forEach(el => {
+    el.classList.add('scroll-bounce');
+    revealObserver.observe(el);
+});
+
 // Staggered playful card reveals - alternate directions
 const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
