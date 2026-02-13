@@ -530,7 +530,7 @@ body.site-revealed .hero-stats {
 
 /* Showreel Feature */
 .showreel-feature {
-    padding: 60px 0;
+    padding: 40px 0;
     background: transparent;
     color: var(--black);
 }
@@ -608,7 +608,7 @@ body.site-revealed .hero-stats {
 
 /* Work Grid */
 .work-grid {
-    padding: 60px 0;
+    padding: 40px 0;
     background: transparent;
 }
 
@@ -617,7 +617,7 @@ body.site-revealed .hero-stats {
 }
 
 .grid-header {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .grid-header h2 {
@@ -771,7 +771,7 @@ body.site-revealed .hero-stats {
 
 /* About Section */
 .about-section {
-    padding: 60px 0;
+    padding: 40px 0;
     background: transparent;
 }
 
@@ -923,7 +923,7 @@ body.site-revealed .hero-stats {
 
 /* CTA Section */
 .cta-section {
-    padding: 60px 40px;
+    padding: 40px 40px;
     background: transparent;
     text-align: center;
 }
