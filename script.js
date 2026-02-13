@@ -105,10 +105,10 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Smooth Scroll Reveal Animations
+// Fun & Expressive Scroll Reveal Animations
 const revealOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -150px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -119,59 +119,86 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, revealOptions);
 
-// Add scroll-reveal class and observe
+// Section titles with bounce
 document.querySelectorAll('.section-title').forEach(el => {
+    el.classList.add('scroll-bounce');
     revealObserver.observe(el);
 });
 
+// Feature badges pop in
 document.querySelectorAll('.feature-badge').forEach(el => {
-    el.classList.add('scroll-reveal');
+    el.classList.add('scroll-pop');
     revealObserver.observe(el);
 });
 
-// Staggered card reveals
+// Staggered playful card reveals - alternate directions
 const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
             const cards = document.querySelectorAll('.card:not(.hidden)');
             const cardIndex = Array.from(cards).indexOf(entry.target);
+
+            // Alternate animation styles
+            const animationType = cardIndex % 3;
+            if (animationType === 0) {
+                entry.target.classList.add('scroll-bounce');
+            } else if (animationType === 1) {
+                entry.target.classList.add('scroll-slide-left');
+            } else {
+                entry.target.classList.add('scroll-slide-right');
+            }
+
             setTimeout(() => {
                 entry.target.classList.add('revealed');
-            }, cardIndex * 150);
+            }, cardIndex * 100);
         }
     });
 }, revealOptions);
 
 document.querySelectorAll('.card').forEach(card => {
-    card.classList.add('scroll-reveal');
     cardObserver.observe(card);
 });
 
+// Capabilities with variety
 document.querySelectorAll('.capability').forEach((el, index) => {
-    el.classList.add('scroll-reveal');
+    if (index % 2 === 0) {
+        el.classList.add('scroll-slide-left');
+    } else {
+        el.classList.add('scroll-slide-right');
+    }
     setTimeout(() => {
         revealObserver.observe(el);
     }, index * 50);
 });
 
+// Stats pop in
 document.querySelectorAll('.stat').forEach((el, index) => {
-    el.classList.add('scroll-reveal');
+    el.classList.add('scroll-pop');
     setTimeout(() => {
         revealObserver.observe(el);
-    }, index * 150);
+    }, index * 100);
 });
 
-// Reveal individual text elements
+// Text fades
 document.querySelectorAll('.hero-description, .lead, .about-text p').forEach(el => {
     el.classList.add('scroll-fade');
     revealObserver.observe(el);
 });
 
+// Info boxes bounce
 document.querySelectorAll('.info-box').forEach((el, index) => {
-    el.classList.add('scroll-reveal');
+    el.classList.add('scroll-bounce');
     setTimeout(() => {
         revealObserver.observe(el);
     }, index * 100);
+});
+
+// Filter tabs pop in
+document.querySelectorAll('.filter-tab').forEach((el, index) => {
+    el.classList.add('scroll-pop');
+    setTimeout(() => {
+        revealObserver.observe(el);
+    }, index * 50);
 });
 
 // Parallax effect on hero video
