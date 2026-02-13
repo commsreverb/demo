@@ -528,7 +528,7 @@ body.site-revealed .hero-stats {
 
 /* Showreel Feature */
 .showreel-feature {
-    padding: 180px 0;
+    padding: 60px 0;
     background: transparent;
     color: var(--black);
 }
@@ -544,6 +544,7 @@ body.site-revealed .hero-stats {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 24px;
+    opacity: 0;
 }
 
 .section-title {
@@ -605,7 +606,7 @@ body.site-revealed .hero-stats {
 
 /* Work Grid */
 .work-grid {
-    padding: 180px 0;
+    padding: 60px 0;
     background: transparent;
 }
 
@@ -614,7 +615,7 @@ body.site-revealed .hero-stats {
 }
 
 .grid-header {
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 .grid-header h2 {
@@ -622,6 +623,7 @@ body.site-revealed .hero-stats {
     font-weight: 900;
     margin-bottom: 48px;
     letter-spacing: -0.02em;
+    opacity: 0;
 }
 
 .filter-tabs {
@@ -640,6 +642,11 @@ body.site-revealed .hero-stats {
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
+    opacity: 0;
+}
+
+.filter-tab.revealed {
+    opacity: 1;
 }
 
 .filter-tab:hover {
@@ -657,8 +664,8 @@ body.site-revealed .hero-stats {
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 48px;
-    row-gap: 80px;
+    gap: 32px;
+    row-gap: 48px;
 }
 
 .card {
@@ -668,6 +675,7 @@ body.site-revealed .hero-stats {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 3px solid var(--black);
     box-shadow: 4px 4px 0 var(--black);
+    opacity: 0;
 }
 
 .card:hover {
@@ -761,7 +769,7 @@ body.site-revealed .hero-stats {
 
 /* About Section */
 .about-section {
-    padding: 180px 0;
+    padding: 60px 0;
     background: transparent;
 }
 
@@ -913,7 +921,7 @@ body.site-revealed .hero-stats {
 
 /* CTA Section */
 .cta-section {
-    padding: 100px 40px;
+    padding: 60px 40px;
     background: transparent;
     text-align: center;
 }
@@ -1035,13 +1043,13 @@ body.site-revealed .hero-stats {
 /* Animations */
 .section-title {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(100px) scale(0.8);
+    transition: all 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .section-title.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 /* Hidden State for Filtering */
