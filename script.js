@@ -1,14 +1,14 @@
 // Reverb Newsroom Website - JavaScript
 
-// Landing Page Button
+// Landing Page Logo Click
 document.addEventListener('DOMContentLoaded', () => {
     const landingOverlay = document.getElementById('landingOverlay');
-    const reverbButton = document.getElementById('reverbButton');
+    const reverbLogo = document.getElementById('reverbLogo');
 
     // Prevent body scroll when landing is active
     document.body.classList.add('landing-active');
 
-    reverbButton.addEventListener('click', () => {
+    reverbLogo.addEventListener('click', () => {
         // Wait for press animation to complete
         setTimeout(() => {
             landingOverlay.classList.add('hidden');
@@ -107,8 +107,8 @@ window.addEventListener('scroll', () => {
 
 // Smooth Scroll Reveal Animations
 const revealOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.2,
+    rootMargin: '0px 0px -150px 0px'
 };
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -137,7 +137,7 @@ const cardObserver = new IntersectionObserver((entries) => {
             const cardIndex = Array.from(cards).indexOf(entry.target);
             setTimeout(() => {
                 entry.target.classList.add('revealed');
-            }, cardIndex * 100);
+            }, cardIndex * 150);
         }
     });
 }, revealOptions);
@@ -159,6 +159,19 @@ document.querySelectorAll('.stat').forEach((el, index) => {
     setTimeout(() => {
         revealObserver.observe(el);
     }, index * 150);
+});
+
+// Reveal individual text elements
+document.querySelectorAll('.hero-description, .lead, .about-text p').forEach(el => {
+    el.classList.add('scroll-fade');
+    revealObserver.observe(el);
+});
+
+document.querySelectorAll('.info-box').forEach((el, index) => {
+    el.classList.add('scroll-reveal');
+    setTimeout(() => {
+        revealObserver.observe(el);
+    }, index * 100);
 });
 
 // Parallax effect on hero video
