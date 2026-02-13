@@ -88,27 +88,76 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+// Smooth Scroll Reveal Animations
+const revealOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+            entry.target.classList.add('revealed');
         }
     });
-}, observerOptions);
+}, revealOptions);
 
-// Observe elements
-document.querySelectorAll('.card').forEach(card => {
-    observer.observe(card);
+// Add scroll-reveal class and observe
+document.querySelectorAll('.section-title').forEach(el => {
+    revealObserver.observe(el);
 });
 
-document.querySelectorAll('.capability').forEach(el => {
-    observer.observe(el);
+document.querySelectorAll('.feature-badge').forEach(el => {
+    el.classList.add('scroll-reveal');
+    revealObserver.observe(el);
+});
+
+// Staggered card reveals
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            const cards = document.querySelectorAll('.card:not(.hidden)');
+            const cardIndex = Array.from(cards).indexOf(entry.target);
+            setTimeout(() => {
+                entry.target.classList.add('revealed');
+            }, cardIndex * 100);
+        }
+    });
+}, revealOptions);
+
+document.querySelectorAll('.card').forEach(card => {
+    card.classList.add('scroll-reveal');
+    cardObserver.observe(card);
+});
+
+document.querySelectorAll('.capability').forEach((el, index) => {
+    el.classList.add('scroll-reveal');
+    setTimeout(() => {
+        revealObserver.observe(el);
+    }, index * 50);
+});
+
+document.querySelectorAll('.stat').forEach((el, index) => {
+    el.classList.add('scroll-reveal');
+    setTimeout(() => {
+        revealObserver.observe(el);
+    }, index * 150);
+});
+
+// Parallax effect on hero video
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const heroVideo = document.querySelector('.hero-video-bg iframe');
+            if (heroVideo && scrolled < 800) {
+                heroVideo.style.transform = `scale(1.2) translateY(${scrolled * 0.3}px)`;
+            }
+            ticking = false;
+        });
+        ticking = true;
+    }
 });
 
 // Console log
