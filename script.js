@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
         reverbLogo.classList.add('exploding');
         landingOverlay.classList.add('exploding');
 
-        // Remove overlay after animation completes
+        // Remove overlay and reveal site after animation completes
         setTimeout(() => {
             landingOverlay.classList.add('hidden');
             document.body.classList.remove('landing-active');
+            document.body.classList.add('site-revealed');
         }, 1200);
     });
 });
@@ -164,6 +165,24 @@ document.querySelectorAll('.feature-badge').forEach(el => {
     revealObserver.observe(el);
 });
 
+// Showreel embed appears
+document.querySelectorAll('.showreel-embed').forEach(el => {
+    el.classList.add('scroll-reveal');
+    revealObserver.observe(el);
+});
+
+// Showreel caption
+document.querySelectorAll('.showreel-caption').forEach(el => {
+    el.classList.add('scroll-fade');
+    revealObserver.observe(el);
+});
+
+// Grid header
+document.querySelectorAll('.grid-header h2').forEach(el => {
+    el.classList.add('scroll-bounce');
+    revealObserver.observe(el);
+});
+
 // Staggered playful card reveals - alternate directions
 const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -241,8 +260,8 @@ window.addEventListener('scroll', () => {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
             const heroVideo = document.querySelector('.hero-video-bg video');
-            if (heroVideo && scrolled < 800) {
-                heroVideo.style.transform = `scale(1.2) translateY(${scrolled * 0.3}px)`;
+            if (heroVideo && scrolled < 1000) {
+                heroVideo.style.transform = `translate(-50%, -50%) scale(1.3) translateY(${scrolled * 0.2}px)`;
             }
             ticking = false;
         });

@@ -44,8 +44,9 @@ body {
     font-family: 'Spotify Mix', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    color: var(--white);
+    color: var(--black);
     background: linear-gradient(135deg, var(--reverb-lime) 0%, var(--reverb-blue) 100%);
+    background-attachment: fixed;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -370,6 +371,9 @@ body.landing-active {
 /* Hero */
 .hero {
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     padding: 120px 0 80px;
     background: transparent;
     border-bottom: none;
@@ -387,10 +391,15 @@ body.landing-active {
 }
 
 .hero-video-bg video {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%) scale(1.3);
     object-fit: cover;
-    transform: scale(1.2);
     transition: transform 0.5s ease-out;
     will-change: transform;
 }
@@ -416,6 +425,9 @@ body.landing-active {
     text-transform: uppercase;
     margin-bottom: 32px;
     opacity: 0;
+}
+
+body.site-revealed .hero-eyebrow {
     animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
 }
 
@@ -436,8 +448,11 @@ body.landing-active {
     line-height: 1.1;
     margin-bottom: 24px;
     letter-spacing: -0.03em;
-    color: var(--white);
+    color: var(--black);
     opacity: 0;
+}
+
+body.site-revealed .hero-title {
     animation: heroTitleImpact 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards;
 }
 
@@ -459,13 +474,16 @@ body.landing-active {
 
 .hero-description {
     font-size: 20px;
-    color: var(--white);
+    color: var(--black);
     line-height: 1.6;
     margin-bottom: 48px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
+}
+
+body.site-revealed .hero-description {
     animation: slideInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards;
 }
 
@@ -485,6 +503,9 @@ body.landing-active {
     justify-content: center;
     gap: 64px;
     opacity: 0;
+}
+
+body.site-revealed .hero-stats {
     animation: slideInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s forwards;
 }
 
@@ -501,14 +522,14 @@ body.landing-active {
 
 .stat-label {
     font-size: 14px;
-    color: var(--white);
+    color: var(--black);
 }
 
 /* Showreel Feature */
 .showreel-feature {
     padding: 180px 0;
     background: transparent;
-    color: var(--white);
+    color: var(--black);
 }
 
 .feature-badge {
