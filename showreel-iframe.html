@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverb Showreel</title>
+    <style>
+        @font-face {
+            font-family: 'Spotify Mix';
+            src: url('../../Desktop/spotify files/Spotify Mix Font/Spotify Mix - Web WOFF/Spotify Mix/SpotifyMix-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Spotify Mix';
+            src: url('../../Desktop/spotify files/Spotify Mix Font/Spotify Mix - Web WOFF/Spotify Mix/SpotifyMix-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Spotify Mix';
+            src: url('../../Desktop/spotify files/Spotify Mix Font/Spotify Mix - Web WOFF/Spotify Mix/SpotifyMix-Black.woff2') format('woff2');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        :root {
+            --reverb-lime: #D4E157;
+            --reverb-blue: #A5B4FC;
+            --reverb-coral: #FF8A80;
+            --black: #000000;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Spotify Mix', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: transparent;
+            padding: 60px 40px;
+        }
+
+        .showreel-section {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: var(--reverb-lime);
+            color: var(--black);
+            padding: 6px 16px;
+            border-radius: 500px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s backwards;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 48px;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            animation: bounceIn 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s backwards;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translateY(100px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .showreel-embed {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: visible;
+            padding: 24px;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(80px) scale(0.9) rotate(-2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+        }
+
+        .showreel-embed::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    var(--reverb-blue) 0px,
+                    var(--reverb-blue) 8px,
+                    var(--black) 8px,
+                    var(--black) 16px
+                );
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .showreel-embed::after {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            background: var(--black);
+            border-radius: 12px;
+            z-index: -1;
+        }
+
+        .showreel-embed iframe {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .showreel-caption {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--black);
+            font-size: 14px;
+            animation: fadeIn 0.8s ease-out 0.8s backwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .showreel-embed {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="showreel-section">
+        <div class="feature-badge">2025 Showreel</div>
+        <h2 class="section-title">Our Latest Work</h2>
+        <div class="showreel-embed">
+            <iframe src="https://drive.google.com/file/d/1ZKnvVxjroel_CpI0_I57FqHdZEGhUt1P/preview"
+                    width="100%"
+                    height="100%"
+                    allow="autoplay"></iframe>
+        </div>
+        <p class="showreel-caption">Reverb 2025 Showreel — Spotify's Creative Production Studio</p>
+    </div>
+</body>
+</html>
