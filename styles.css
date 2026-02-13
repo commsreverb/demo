@@ -45,14 +45,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
     color: var(--white);
-    background: linear-gradient(
-        to bottom,
-        var(--reverb-blue) 0%,
-        #7A8BD6 25%,
-        #4A5A9E 50%,
-        #2A3A6E 75%,
-        var(--black) 100%
-    );
+    background: linear-gradient(135deg, var(--reverb-lime) 0%, var(--reverb-blue) 100%);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -761,7 +754,7 @@ body.landing-active {
     font-weight: 900;
     margin-bottom: 24px;
     letter-spacing: -0.02em;
-    color: var(--white);
+    color: var(--black);
 }
 
 .lead {
@@ -769,13 +762,13 @@ body.landing-active {
     font-weight: 500;
     line-height: 1.5;
     margin-bottom: 24px;
-    color: var(--white);
+    color: var(--black);
 }
 
 .about-text p {
     font-size: 18px;
     line-height: 1.7;
-    color: var(--gray-300);
+    color: var(--gray-900);
     margin-bottom: 48px;
 }
 
@@ -789,12 +782,12 @@ body.landing-active {
     font-size: 18px;
     font-weight: 900;
     margin-bottom: 8px;
-    color: var(--white);
+    color: var(--black);
 }
 
 .capability p {
     font-size: 15px;
-    color: var(--gray-300);
+    color: var(--gray-900);
     margin: 0;
 }
 
@@ -906,13 +899,13 @@ body.landing-active {
 .cta-section h2 {
     font-size: 48px;
     font-weight: 900;
-    color: var(--white);
+    color: var(--black);
     margin-bottom: 16px;
 }
 
 .cta-section p {
     font-size: 20px;
-    color: var(--white);
+    color: var(--black);
     margin-bottom: 32px;
 }
 
@@ -937,18 +930,18 @@ body.landing-active {
 .cta-note {
     margin-top: 24px;
     font-size: 16px;
-    color: var(--white);
+    color: var(--black);
 }
 
 .cta-note a {
-    color: var(--reverb-lime);
+    color: var(--black);
     font-weight: 700;
     text-decoration: underline;
 }
 
 /* Footer */
 .footer {
-    background: transparent;
+    background: var(--black);
     color: var(--white);
     padding: 80px 0 40px;
 }
@@ -984,7 +977,7 @@ body.landing-active {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 16px;
-    color: var(--reverb-lime);
+    color: var(--white);
 }
 
 .footer-col ul {
