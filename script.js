@@ -1,5 +1,22 @@
 // Reverb Newsroom Website - JavaScript
 
+// Landing Page Button
+document.addEventListener('DOMContentLoaded', () => {
+    const landingOverlay = document.getElementById('landingOverlay');
+    const reverbButton = document.getElementById('reverbButton');
+
+    // Prevent body scroll when landing is active
+    document.body.classList.add('landing-active');
+
+    reverbButton.addEventListener('click', () => {
+        // Wait for press animation to complete
+        setTimeout(() => {
+            landingOverlay.classList.add('hidden');
+            document.body.classList.remove('landing-active');
+        }, 200);
+    });
+});
+
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
