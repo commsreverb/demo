@@ -10,35 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('landing-active');
 
     reverbLogo.addEventListener('click', () => {
-        // Create explosion particles
-        const colors = ['#D4E157', '#A5B4FC', '#FF8A80'];
-        const particleCount = 20;
-
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.backgroundColor = colors[i % colors.length];
-
-            // Random direction
-            const angle = (360 / particleCount) * i;
-            const distance = 300 + Math.random() * 200;
-            const tx = Math.cos(angle * Math.PI / 180) * distance;
-            const ty = Math.sin(angle * Math.PI / 180) * distance;
-
-            particle.style.setProperty('--tx', `${tx}px`);
-            particle.style.setProperty('--ty', `${ty}px`);
-            particle.style.left = '50%';
-            particle.style.top = '50%';
-
-            explosionParticles.appendChild(particle);
-
-            // Trigger animation
-            setTimeout(() => {
-                particle.classList.add('burst');
-            }, 10);
-        }
-
-        // Trigger explosive animations
+        // Trigger clean fade animations
         reverbLogo.classList.add('exploding');
         landingOverlay.classList.add('exploding');
 
@@ -47,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             landingOverlay.classList.add('hidden');
             document.body.classList.remove('landing-active');
             document.body.classList.add('site-revealed');
-        }, 1200);
+        }, 800);
     });
 });
 
