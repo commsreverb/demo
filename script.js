@@ -213,7 +213,7 @@ document.querySelectorAll('.about-text h2').forEach(el => {
 // Staggered playful card reveals - alternate directions
 const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
             const cards = document.querySelectorAll('.card:not(.hidden)');
             const cardIndex = Array.from(cards).indexOf(entry.target);
 
@@ -229,6 +229,8 @@ const cardObserver = new IntersectionObserver((entries) => {
 
             setTimeout(() => {
                 entry.target.classList.add('revealed');
+                // Stop observing once revealed
+                cardObserver.unobserve(entry.target);
             }, cardIndex * 100);
         }
     });
@@ -250,11 +252,42 @@ document.querySelectorAll('.capability').forEach((el, index) => {
     }, index * 50);
 });
 
-// Stats pop in
+// Stats pop in with counting animation
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+
+            // Animate numbers
+            const statNum = entry.target.querySelector('.stat-num');
+            if (statNum) {
+                const text = statNum.textContent;
+                const number = parseInt(text);
+
+                if (!isNaN(number)) {
+                    let current = 0;
+                    const duration = 1500;
+                    const increment = number / (duration / 16);
+
+                    const counter = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            statNum.textContent = number + '+';
+                            clearInterval(counter);
+                        } else {
+                            statNum.textContent = Math.floor(current);
+                        }
+                    }, 16);
+                }
+            }
+        }
+    });
+}, revealOptions);
+
 document.querySelectorAll('.stat').forEach((el, index) => {
     el.classList.add('scroll-pop');
     setTimeout(() => {
-        revealObserver.observe(el);
+        statsObserver.observe(el);
     }, index * 100);
 });
 
