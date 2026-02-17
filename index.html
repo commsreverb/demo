@@ -8,8 +8,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Guestlist Gate -->
+    <div class="guestlist-gate" id="guestlistGate">
+        <div class="guestlist-content">
+            <img src="Reverb logo.png" alt="Reverb" class="guestlist-logo">
+            <h1 class="guestlist-title">Welcome to Reverb</h1>
+            <p class="guestlist-description">This event is invite-only. Please enter your email to access.</p>
+
+            <form class="guestlist-form" id="guestlistForm">
+                <div class="input-group">
+                    <input
+                        type="email"
+                        id="guestlistEmail"
+                        placeholder="Enter your email address"
+                        required
+                        autocomplete="email"
+                    >
+                    <button type="submit" class="guestlist-submit">
+                        <span class="submit-text">Enter</span>
+                        <span class="submit-loading">Checking...</span>
+                    </button>
+                </div>
+                <div class="guestlist-message" id="guestlistMessage"></div>
+            </form>
+
+            <p class="guestlist-note">Don't have access? <a href="mailto:reverb@spotify.com">Contact us</a></p>
+        </div>
+    </div>
+
     <!-- Landing Page Overlay -->
-    <div class="landing-overlay" id="landingOverlay">
+    <div class="landing-overlay" id="landingOverlay" style="display: none;">
         <div class="landing-content">
             <div class="explosion-particles" id="explosionParticles"></div>
             <img src="Reverb logo.png" alt="Reverb" class="landing-logo" id="reverbLogo">

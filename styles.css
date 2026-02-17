@@ -56,6 +56,190 @@ body.landing-active {
     overflow: hidden;
 }
 
+body.guestlist-active {
+    overflow: hidden;
+}
+
+/* Guestlist Gate */
+.guestlist-gate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--reverb-lime) 0%, var(--reverb-blue) 100%);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.guestlist-gate.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.guestlist-content {
+    text-align: center;
+    max-width: 500px;
+    padding: 40px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.guestlist-logo {
+    height: 120px;
+    margin-bottom: 40px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.2));
+}
+
+.guestlist-title {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--black);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.guestlist-description {
+    font-size: 18px;
+    color: var(--black);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.guestlist-form {
+    margin-bottom: 24px;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.guestlist-form input {
+    flex: 1;
+    padding: 16px 24px;
+    font-family: 'Spotify Mix', sans-serif;
+    font-size: 16px;
+    border: 3px solid var(--black);
+    border-radius: 500px;
+    background: white;
+    transition: all 0.3s;
+    box-shadow: 4px 4px 0 var(--black);
+}
+
+.guestlist-form input:focus {
+    outline: none;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--black);
+}
+
+.guestlist-submit {
+    padding: 16px 32px;
+    font-family: 'Spotify Mix', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    background: var(--black);
+    color: white;
+    border: 3px solid var(--black);
+    border-radius: 500px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.guestlist-submit:hover {
+    background: var(--reverb-coral);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.guestlist-submit:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.guestlist-submit.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.submit-loading {
+    display: none;
+}
+
+.guestlist-submit.loading .submit-text {
+    display: none;
+}
+
+.guestlist-submit.loading .submit-loading {
+    display: inline;
+}
+
+.guestlist-message {
+    min-height: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.guestlist-message.error {
+    background: rgba(255, 138, 128, 0.3);
+    color: var(--black);
+    border: 2px solid var(--reverb-coral);
+}
+
+.guestlist-message.success {
+    background: rgba(212, 225, 87, 0.3);
+    color: var(--black);
+    border: 2px solid var(--reverb-lime);
+}
+
+.guestlist-note {
+    font-size: 14px;
+    color: var(--black);
+}
+
+.guestlist-note a {
+    color: var(--black);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.guestlist-note a:hover {
+    color: var(--reverb-coral);
+}
+
+@media (max-width: 768px) {
+    .guestlist-content {
+        padding: 24px;
+        max-width: 90%;
+    }
+
+    .guestlist-title {
+        font-size: 36px;
+    }
+
+    .guestlist-description {
+        font-size: 16px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .guestlist-submit {
+        width: 100%;
+    }
+}
+
 /* Landing Page Overlay */
 .landing-overlay {
     position: fixed;

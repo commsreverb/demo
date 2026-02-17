@@ -1,13 +1,139 @@
 // Reverb Newsroom Website - JavaScript
 
+// ========================================
+// GUESTLIST AUTHENTICATION
+// ========================================
+
+// Configure your guestlist here
+// OPTION 1: Simple array (for testing)
+const GUESTLIST = [
+    'test@spotify.com',
+    'demo@spotify.com',
+    'reverb@spotify.com'
+];
+
+// OPTION 2: Load from Airtable (uncomment and configure)
+// const AIRTABLE_API_KEY = 'your-api-key';
+// const AIRTABLE_BASE_ID = 'your-base-id';
+// const AIRTABLE_TABLE_NAME = 'Guestlist';
+
+// OPTION 3: Load from Google Sheets (requires Google Sheets API setup)
+// const GOOGLE_SHEET_ID = 'your-sheet-id';
+// const GOOGLE_API_KEY = 'your-api-key';
+
+async function checkGuestlist(email) {
+    // Normalize email
+    email = email.toLowerCase().trim();
+
+    // OPTION 1: Check against simple array
+    return GUESTLIST.includes(email);
+
+    // OPTION 2: Check against Airtable (uncomment to use)
+    /*
+    try {
+        const response = await fetch(
+            `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula={Email}='${email}'`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${AIRTABLE_API_KEY}`
+                }
+            }
+        );
+        const data = await response.json();
+        return data.records && data.records.length > 0;
+    } catch (error) {
+        console.error('Airtable check failed:', error);
+        return false;
+    }
+    */
+
+    // OPTION 3: Check against Google Sheets (uncomment to use)
+    /*
+    try {
+        const response = await fetch(
+            `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/Sheet1!A:A?key=${GOOGLE_API_KEY}`
+        );
+        const data = await response.json();
+        const emails = data.values.flat().map(e => e.toLowerCase().trim());
+        return emails.includes(email);
+    } catch (error) {
+        console.error('Google Sheets check failed:', error);
+        return false;
+    }
+    */
+}
+
 // Landing Page Logo Click - Creative Explosion Transition
 document.addEventListener('DOMContentLoaded', () => {
+    // ========================================
+    // GUESTLIST GATE LOGIC
+    // ========================================
+    const guestlistGate = document.getElementById('guestlistGate');
+    const guestlistForm = document.getElementById('guestlistForm');
+    const guestlistEmail = document.getElementById('guestlistEmail');
+    const guestlistMessage = document.getElementById('guestlistMessage');
     const landingOverlay = document.getElementById('landingOverlay');
+
+    // Check if already authenticated
+    const isAuthenticated = sessionStorage.getItem('guestlist_authenticated') === 'true';
+
+    if (isAuthenticated) {
+        // Hide guestlist, show landing animation
+        guestlistGate.classList.add('hidden');
+        landingOverlay.style.display = 'flex';
+        document.body.classList.remove('guestlist-active');
+        document.body.classList.add('landing-active');
+    } else {
+        // Show guestlist gate
+        document.body.classList.add('guestlist-active');
+    }
+
+    // Handle guestlist form submission
+    guestlistForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const email = guestlistEmail.value;
+        const submitBtn = guestlistForm.querySelector('.guestlist-submit');
+
+        // Clear previous message
+        guestlistMessage.textContent = '';
+        guestlistMessage.className = 'guestlist-message';
+
+        // Show loading state
+        submitBtn.classList.add('loading');
+
+        // Check guestlist
+        const isOnList = await checkGuestlist(email);
+
+        if (isOnList) {
+            // Success - grant access
+            guestlistMessage.textContent = '✓ Welcome! Loading your experience...';
+            guestlistMessage.classList.add('success');
+
+            // Store authentication
+            sessionStorage.setItem('guestlist_authenticated', 'true');
+            sessionStorage.setItem('guestlist_email', email);
+
+            // Hide guestlist gate and show landing animation
+            setTimeout(() => {
+                guestlistGate.classList.add('hidden');
+                landingOverlay.style.display = 'flex';
+                document.body.classList.remove('guestlist-active');
+                document.body.classList.add('landing-active');
+            }, 1000);
+        } else {
+            // Error - not on list
+            guestlistMessage.textContent = '✗ Email not found on guestlist. Please check your email or contact us.';
+            guestlistMessage.classList.add('error');
+            submitBtn.classList.remove('loading');
+        }
+    });
+
+    // ========================================
+    // ORIGINAL LANDING PAGE LOGIC
+    // ========================================
     const reverbLogo = document.getElementById('reverbLogo');
     const explosionParticles = document.getElementById('explosionParticles');
-
-    // Prevent body scroll when landing is active
-    document.body.classList.add('landing-active');
 
     reverbLogo.addEventListener('click', () => {
         // Trigger clean fade animations
