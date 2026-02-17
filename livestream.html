@@ -5,42 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Livestream — Reverb</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background: #000;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #D4E157 0%, #A5B4FC 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 40px 20px;
         }
 
         .livestream-container {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
+            max-width: 1320px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .livestream-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            max-width: 1920px;
-            max-height: 1080px;
+        .livestream-title {
+            font-size: 72px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 48px;
+            letter-spacing: -0.03em;
+            text-transform: lowercase;
+        }
+
+        .video-wrapper {
+            background: white;
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 8px 8px 0 #000;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            background: repeating-linear-gradient(
+                90deg,
+                #A5B4FC 0px,
+                #A5B4FC 8px,
+                transparent 8px,
+                transparent 16px
+            );
+            border-radius: 24px;
+            z-index: -1;
         }
 
         .livestream-embed {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: relative;
+            width: 1280px;
+            max-width: 100%;
+            height: 720px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .livestream-embed iframe {
@@ -53,7 +75,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.9);
+            background: #fff;
             color: #000;
             padding: 12px 24px;
             border-radius: 500px;
@@ -62,21 +84,58 @@
             font-size: 14px;
             z-index: 1000;
             transition: all 0.3s;
-            border: 2px solid #000;
-            box-shadow: 2px 2px 0 #000;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0 #000;
         }
 
         .back-button:hover {
             background: #D4E157;
             transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0 #000;
+            box-shadow: 6px 6px 0 #000;
         }
 
-        /* Fullscreen on smaller screens */
-        @media (max-width: 1920px) {
-            .livestream-wrapper {
-                max-width: 100%;
-                max-height: 100%;
+        @media (max-width: 1400px) {
+            .livestream-title {
+                font-size: 56px;
+            }
+
+            .livestream-embed {
+                width: 960px;
+                height: 540px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .livestream-title {
+                font-size: 48px;
+                margin-bottom: 32px;
+            }
+
+            .livestream-embed {
+                width: 100%;
+                height: 0;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                position: relative;
+            }
+
+            .livestream-embed iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .video-wrapper {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .livestream-title {
+                font-size: 36px;
+            }
+
+            body {
+                padding: 20px 10px;
             }
         }
     </style>
@@ -85,7 +144,9 @@
     <a href="index.html" class="back-button">← Back to Site</a>
 
     <div class="livestream-container">
-        <div class="livestream-wrapper">
+        <h1 class="livestream-title">wrappedlivestream</h1>
+
+        <div class="video-wrapper">
             <div class="livestream-embed">
                 <!-- REPLACE THIS IFRAME WITH YOUR ACTUAL LIVESTREAM EMBED -->
                 <!-- Example: YouTube Live, Vimeo Live, or custom streaming platform -->
@@ -97,11 +158,6 @@
 
                 <!-- Alternative: Use your Google Drive video -->
                 <!-- <iframe src="https://drive.google.com/file/d/1ZKnvVxjroel_CpI0_I57FqHdZEGhUt1P/preview" allow="autoplay"></iframe> -->
-
-                <!-- Alternative: Direct video file -->
-                <!-- <video controls autoplay>
-                    <source src="your-livestream.mp4" type="video/mp4">
-                </video> -->
             </div>
         </div>
     </div>
