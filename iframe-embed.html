@@ -54,7 +54,7 @@
                 </div>
                 <a href="#showreel" target="_parent">Showreel</a>
                 <a href="#about" target="_parent">About</a>
-                <a href="#rsvp" target="_parent">RSVP</a>
+                <a href="https://htmltest.splashthat.com/#rsvp" target="_parent">RSVP</a>
                 <a href="https://airtable.com/apprkLiYfJMSDKZgc/shrmwGeK8rhYIhivL" target="_blank" class="nav-cta">Request a Project</a>
             </div>
         </div>
@@ -89,33 +89,5 @@
     </section>
 
     <script src="script.js"></script>
-    <script>
-        // Handle RSVP link click to trigger Splashthat modal
-        document.addEventListener('DOMContentLoaded', function() {
-            const rsvpLink = document.querySelector('a[href="#rsvp"]');
-            if (rsvpLink) {
-                rsvpLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Try to find and click the Splashthat RSVP button in parent window
-                    try {
-                        if (window.parent && window.parent !== window) {
-                            // Try to find the RSVP button in parent page and click it
-                            const parentRsvpButton = window.parent.document.querySelector('a[href="#rsvp"]');
-                            if (parentRsvpButton) {
-                                parentRsvpButton.click();
-                            } else {
-                                // Fallback: navigate to #rsvp
-                                window.parent.location.hash = 'rsvp';
-                            }
-                        }
-                    } catch (error) {
-                        // Cross-origin restriction - fallback to hash navigation
-                        console.log('Cannot access parent due to cross-origin policy');
-                        window.parent.location.href = window.parent.location.href.split('#')[0] + '#rsvp';
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>
