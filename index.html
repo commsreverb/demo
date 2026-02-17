@@ -539,6 +539,13 @@
                     <span class="submit-text">Submit RSVP</span>
                     <span class="submit-loading">Submitting...</span>
                 </button>
+
+                <div class="calendar-section" id="calendarSection" style="display: none;">
+                    <p class="calendar-text">📅 Don't forget to add this event to your calendar!</p>
+                    <button type="button" class="add-to-calendar-btn" id="addToCalendarBtn">
+                        Add to Calendar
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -643,6 +650,16 @@
             // Google Apps Script Web App URL for RSVP form submissions
             const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJhOyrXiB-pBh9hx2I1KrpJluRbey8k5ZvKW7fZqUIG_R10hOtev63cKxhOQcRzAv2SQ/exec';
 
+            // EVENT DETAILS - UPDATE THESE FOR YOUR ACTUAL EVENT
+            const EVENT_CONFIG = {
+                name: 'Wrapped 2025 Event',
+                description: 'Join us for an exclusive Wrapped event hosted by Reverb',
+                location: 'Spotify NYC Office, 4 World Trade Center',
+                startDate: '2025-03-15T18:00:00', // Format: YYYY-MM-DDTHH:mm:ss
+                endDate: '2025-03-15T21:00:00',   // Format: YYYY-MM-DDTHH:mm:ss
+                timezone: 'America/New_York'
+            };
+
             if (!rsvpTestTrigger) {
                 console.error('RSVP Test trigger button not found!');
                 return;
@@ -666,6 +683,8 @@
                 rsvpTestForm.reset();
                 formMessage.textContent = '';
                 formMessage.className = 'form-message';
+                // Hide calendar section
+                document.getElementById('calendarSection').style.display = 'none';
             }
 
             rsvpTestModalClose.addEventListener('click', closeRsvpTestModal);
@@ -678,11 +697,50 @@
                 }
             });
 
+            // Function to generate calendar file
+            function generateCalendarFile() {
+                const event = EVENT_CONFIG;
+
+                // Format dates for .ics file (remove dashes, colons)
+                const formatDate = (dateStr) => {
+                    return new Date(dateStr).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                };
+
+                const startDate = formatDate(event.startDate);
+                const endDate = formatDate(event.endDate);
+
+                // Create .ics file content
+                const icsContent = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//Reverb//RSVP//EN',
+                    'BEGIN:VEVENT',
+                    `DTSTART:${startDate}`,
+                    `DTEND:${endDate}`,
+                    `SUMMARY:${event.name}`,
+                    `DESCRIPTION:${event.description}`,
+                    `LOCATION:${event.location}`,
+                    'STATUS:CONFIRMED',
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].join('\r\n');
+
+                // Create download link
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'event.ics';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
             // Handle form submission
             rsvpTestForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const submitBtn = rsvpTestForm.querySelector('.form-submit');
+                const calendarSection = document.getElementById('calendarSection');
                 submitBtn.classList.add('loading');
                 formMessage.textContent = '';
                 formMessage.className = 'form-message';
@@ -716,10 +774,13 @@
                     formMessage.textContent = '✓ Thank you! Your RSVP has been submitted successfully.';
                     formMessage.classList.add('success');
 
-                    // Reset form after success
-                    setTimeout(() => {
-                        closeRsvpTestModal();
-                    }, 2000);
+                    // Show calendar button
+                    calendarSection.style.display = 'block';
+
+                    // Don't auto-close anymore so they can add to calendar
+                    // setTimeout(() => {
+                    //     closeRsvpTestModal();
+                    // }, 2000);
 
                 } catch (error) {
                     console.error('Error submitting RSVP:', error);
@@ -728,6 +789,11 @@
                 } finally {
                     submitBtn.classList.remove('loading');
                 }
+            });
+
+            // Add to Calendar button
+            document.getElementById('addToCalendarBtn').addEventListener('click', function() {
+                generateCalendarFile();
             });
 
             console.log('RSVP Test Modal initialized!');

@@ -1739,6 +1739,42 @@ body.site-revealed .hero-stats {
     display: inline;
 }
 
+.calendar-section {
+    text-align: center;
+    padding: 24px;
+    background: rgba(212, 225, 87, 0.2);
+    border-radius: 12px;
+    border: 2px dashed var(--reverb-lime);
+    margin-top: 20px;
+}
+
+.calendar-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 16px;
+}
+
+.add-to-calendar-btn {
+    padding: 14px 32px;
+    font-family: 'Spotify Mix', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--reverb-lime);
+    color: var(--black);
+    border: 3px solid var(--black);
+    border-radius: 500px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 3px 3px 0 var(--black);
+}
+
+.add-to-calendar-btn:hover {
+    background: var(--reverb-coral);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--black);
+}
+
 @media (max-width: 768px) {
     .rsvp-test-modal-content {
         padding: 32px 24px;
