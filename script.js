@@ -148,8 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        // Skip if this is the RSVP trigger or Livestream trigger
-        if (this.classList.contains('rsvp-trigger') || this.classList.contains('livestream-link')) {
+        // Skip if this is the RSVP trigger, Livestream trigger, or RSVP Test trigger
+        if (this.classList.contains('rsvp-trigger') ||
+            this.classList.contains('livestream-link') ||
+            this.classList.contains('rsvp-test-trigger')) {
             return;
         }
 
