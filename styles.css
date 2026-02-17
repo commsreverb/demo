@@ -1132,8 +1132,8 @@ body.site-revealed .hero-stats {
 .rsvp-modal-content {
     position: relative;
     width: 90%;
-    max-width: 1200px;
-    height: 90vh;
+    max-width: 600px;
+    height: 85vh;
     background: white;
     border-radius: 20px;
     border: 4px solid var(--black);

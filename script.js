@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        // Skip if this is the RSVP trigger
+        if (this.classList.contains('rsvp-trigger')) {
+            return;
+        }
+
         // Check if this is a dropdown filter link
         const filterValue = this.getAttribute('data-filter');
         if (filterValue) {
