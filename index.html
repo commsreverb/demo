@@ -36,7 +36,7 @@
                 </div>
                 <a href="#showreel">Showreel</a>
                 <a href="#about">About</a>
-                <a href="#rsvp" target="_parent">RSVP</a>
+                <a href="#" class="rsvp-trigger" id="rsvpTrigger">RSVP</a>
                 <a href="https://airtable.com/apprkLiYfJMSDKZgc/shrmwGeK8rhYIhivL" target="_blank" class="nav-cta">Request a Project</a>
             </div>
         </div>
@@ -424,6 +424,47 @@
         </div>
     </footer>
 
+    <!-- RSVP Modal -->
+    <div class="rsvp-modal" id="rsvpModal">
+        <div class="rsvp-modal-overlay" id="rsvpModalOverlay"></div>
+        <div class="rsvp-modal-content">
+            <button class="rsvp-modal-close" id="rsvpModalClose">×</button>
+            <div class="rsvp-modal-body">
+                <iframe src="https://htmltest.splashthat.com/" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        // RSVP Modal functionality
+        const rsvpModal = document.getElementById('rsvpModal');
+        const rsvpTrigger = document.getElementById('rsvpTrigger');
+        const rsvpModalClose = document.getElementById('rsvpModalClose');
+        const rsvpModalOverlay = document.getElementById('rsvpModalOverlay');
+
+        // Open modal
+        rsvpTrigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            rsvpModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal
+        function closeModal() {
+            rsvpModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        rsvpModalClose.addEventListener('click', closeModal);
+        rsvpModalOverlay.addEventListener('click', closeModal);
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && rsvpModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
