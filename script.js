@@ -10,9 +10,9 @@
 
 // OPTION 1: Google Sheets (RECOMMENDED - Easy to manage)
 // Paste your published Google Sheet CSV URL here
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?output=csv';
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkDh3INbs9-6MCtQmfrZW-Z9681Hv4cx806ZfuZ7GsDVoGwFWrZV3b2hzAVaXMa6eAF9VXB91rJi2m/pub?output=csv';
 
-// OPTION 2: Simple array (for testing)
+// OPTION 2: Simple array (for testing/fallback)
 const GUESTLIST = [
     'test@spotify.com',
     'demo@spotify.com',
@@ -20,7 +20,7 @@ const GUESTLIST = [
 ];
 
 // Set which option to use
-const USE_GOOGLE_SHEET = false; // Change to true when you add your Google Sheet URL
+const USE_GOOGLE_SHEET = true; // Using Google Sheet now!
 
 async function checkGuestlist(email) {
     // Normalize email
