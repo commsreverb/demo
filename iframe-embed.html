@@ -89,5 +89,22 @@
     </section>
 
     <script src="script.js"></script>
+    <script>
+        // Handle RSVP link click to navigate parent page
+        document.addEventListener('DOMContentLoaded', function() {
+            const rsvpLink = document.querySelector('a[href="#rsvp"]');
+            if (rsvpLink) {
+                rsvpLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Navigate parent window to RSVP section
+                    if (window.parent && window.parent !== window) {
+                        window.parent.location.hash = 'rsvp';
+                        // Force scroll in case hash doesn't trigger it
+                        window.parent.postMessage({ action: 'scrollToRSVP' }, '*');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
