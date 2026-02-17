@@ -438,32 +438,48 @@
     <script src="script.js"></script>
     <script>
         // RSVP Modal functionality
-        const rsvpModal = document.getElementById('rsvpModal');
-        const rsvpTrigger = document.getElementById('rsvpTrigger');
-        const rsvpModalClose = document.getElementById('rsvpModalClose');
-        const rsvpModalOverlay = document.getElementById('rsvpModalOverlay');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('RSVP Modal script loading...');
 
-        // Open modal
-        rsvpTrigger.addEventListener('click', function(e) {
-            e.preventDefault();
-            rsvpModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+            const rsvpModal = document.getElementById('rsvpModal');
+            const rsvpTrigger = document.getElementById('rsvpTrigger');
+            const rsvpModalClose = document.getElementById('rsvpModalClose');
+            const rsvpModalOverlay = document.getElementById('rsvpModalOverlay');
 
-        // Close modal
-        function closeModal() {
-            rsvpModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+            console.log('RSVP elements:', { rsvpModal, rsvpTrigger, rsvpModalClose, rsvpModalOverlay });
 
-        rsvpModalClose.addEventListener('click', closeModal);
-        rsvpModalOverlay.addEventListener('click', closeModal);
-
-        // Close on ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && rsvpModal.classList.contains('active')) {
-                closeModal();
+            if (!rsvpTrigger) {
+                console.error('RSVP trigger button not found!');
+                return;
             }
+
+            // Open modal
+            rsvpTrigger.addEventListener('click', function(e) {
+                console.log('RSVP button clicked!');
+                e.preventDefault();
+                e.stopPropagation();
+                rsvpModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close modal
+            function closeModal() {
+                console.log('Closing modal');
+                rsvpModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            rsvpModalClose.addEventListener('click', closeModal);
+            rsvpModalOverlay.addEventListener('click', closeModal);
+
+            // Close on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && rsvpModal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            console.log('RSVP Modal initialized!');
         });
     </script>
 </body>
