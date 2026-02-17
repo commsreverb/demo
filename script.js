@@ -4,63 +4,59 @@
 // GUESTLIST AUTHENTICATION
 // ========================================
 
-// Configure your guestlist here
-// OPTION 1: Simple array (for testing)
+// ========================================
+// GUESTLIST CONFIGURATION
+// ========================================
+
+// OPTION 1: Google Sheets (RECOMMENDED - Easy to manage)
+// Paste your published Google Sheet CSV URL here
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?output=csv';
+
+// OPTION 2: Simple array (for testing)
 const GUESTLIST = [
     'test@spotify.com',
     'demo@spotify.com',
     'reverb@spotify.com'
 ];
 
-// OPTION 2: Load from Airtable (uncomment and configure)
-// const AIRTABLE_API_KEY = 'your-api-key';
-// const AIRTABLE_BASE_ID = 'your-base-id';
-// const AIRTABLE_TABLE_NAME = 'Guestlist';
-
-// OPTION 3: Load from Google Sheets (requires Google Sheets API setup)
-// const GOOGLE_SHEET_ID = 'your-sheet-id';
-// const GOOGLE_API_KEY = 'your-api-key';
+// Set which option to use
+const USE_GOOGLE_SHEET = false; // Change to true when you add your Google Sheet URL
 
 async function checkGuestlist(email) {
     // Normalize email
     email = email.toLowerCase().trim();
 
-    // OPTION 1: Check against simple array
-    return GUESTLIST.includes(email);
-
-    // OPTION 2: Check against Airtable (uncomment to use)
-    /*
-    try {
-        const response = await fetch(
-            `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula={Email}='${email}'`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${AIRTABLE_API_KEY}`
-                }
+    if (USE_GOOGLE_SHEET) {
+        // Check against Google Sheet
+        try {
+            const response = await fetch(GOOGLE_SHEET_CSV_URL);
+            if (!response.ok) {
+                console.error('Failed to fetch Google Sheet');
+                return false;
             }
-        );
-        const data = await response.json();
-        return data.records && data.records.length > 0;
-    } catch (error) {
-        console.error('Airtable check failed:', error);
-        return false;
-    }
-    */
 
-    // OPTION 3: Check against Google Sheets (uncomment to use)
-    /*
-    try {
-        const response = await fetch(
-            `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/Sheet1!A:A?key=${GOOGLE_API_KEY}`
-        );
-        const data = await response.json();
-        const emails = data.values.flat().map(e => e.toLowerCase().trim());
-        return emails.includes(email);
-    } catch (error) {
-        console.error('Google Sheets check failed:', error);
-        return false;
+            const csvText = await response.text();
+            // Parse CSV and extract emails (assumes emails are in first column)
+            const lines = csvText.split('\n');
+            const emails = lines
+                .map(line => {
+                    // Handle CSV with quotes
+                    const email = line.split(',')[0].replace(/"/g, '').trim();
+                    return email.toLowerCase();
+                })
+                .filter(e => e.includes('@')); // Only keep valid email-like entries
+
+            console.log('Loaded', emails.length, 'emails from Google Sheet');
+            return emails.includes(email);
+        } catch (error) {
+            console.error('Google Sheet check failed:', error);
+            // Fallback to simple array if Google Sheet fails
+            return GUESTLIST.includes(email);
+        }
+    } else {
+        // Check against simple array
+        return GUESTLIST.includes(email);
     }
-    */
 }
 
 // Landing Page Logo Click - Creative Explosion Transition
