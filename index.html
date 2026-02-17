@@ -64,7 +64,7 @@
                 </div>
                 <a href="#showreel">Showreel</a>
                 <a href="#about">About</a>
-                <a href="livestream.html" class="livestream-link">Livestream</a>
+                <a href="#" class="livestream-link" id="livestreamTrigger">Livestream</a>
                 <a href="#" class="rsvp-trigger" id="rsvpTrigger">RSVP</a>
                 <a href="https://airtable.com/apprkLiYfJMSDKZgc/shrmwGeK8rhYIhivL" target="_blank" class="nav-cta">Request a Project</a>
             </div>
@@ -464,6 +464,22 @@
         </div>
     </div>
 
+    <!-- Livestream Modal -->
+    <div class="livestream-modal" id="livestreamModal">
+        <div class="livestream-modal-overlay" id="livestreamModalOverlay"></div>
+        <div class="livestream-modal-content">
+            <h2 class="livestream-modal-title">livestream</h2>
+            <button class="livestream-modal-close" id="livestreamModalClose">×</button>
+            <div class="livestream-modal-body">
+                <iframe
+                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         // RSVP Modal functionality
@@ -509,6 +525,47 @@
             });
 
             console.log('RSVP Modal initialized!');
+        });
+
+        // Livestream Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const livestreamModal = document.getElementById('livestreamModal');
+            const livestreamTrigger = document.getElementById('livestreamTrigger');
+            const livestreamModalClose = document.getElementById('livestreamModalClose');
+            const livestreamModalOverlay = document.getElementById('livestreamModalOverlay');
+
+            if (!livestreamTrigger) {
+                console.error('Livestream trigger button not found!');
+                return;
+            }
+
+            // Open modal
+            livestreamTrigger.addEventListener('click', function(e) {
+                console.log('Livestream button clicked!');
+                e.preventDefault();
+                e.stopPropagation();
+                livestreamModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // Close modal
+            function closeLivestreamModal() {
+                console.log('Closing livestream modal');
+                livestreamModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            livestreamModalClose.addEventListener('click', closeLivestreamModal);
+            livestreamModalOverlay.addEventListener('click', closeLivestreamModal);
+
+            // Close on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && livestreamModal.classList.contains('active')) {
+                    closeLivestreamModal();
+                }
+            });
+
+            console.log('Livestream Modal initialized!');
         });
     </script>
 </body>
