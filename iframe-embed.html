@@ -90,17 +90,28 @@
 
     <script src="script.js"></script>
     <script>
-        // Handle RSVP link click to navigate parent page
+        // Handle RSVP link click to trigger Splashthat modal
         document.addEventListener('DOMContentLoaded', function() {
             const rsvpLink = document.querySelector('a[href="#rsvp"]');
             if (rsvpLink) {
                 rsvpLink.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // Navigate parent window to RSVP section
-                    if (window.parent && window.parent !== window) {
-                        window.parent.location.hash = 'rsvp';
-                        // Force scroll in case hash doesn't trigger it
-                        window.parent.postMessage({ action: 'scrollToRSVP' }, '*');
+                    // Try to find and click the Splashthat RSVP button in parent window
+                    try {
+                        if (window.parent && window.parent !== window) {
+                            // Try to find the RSVP button in parent page and click it
+                            const parentRsvpButton = window.parent.document.querySelector('a[href="#rsvp"]');
+                            if (parentRsvpButton) {
+                                parentRsvpButton.click();
+                            } else {
+                                // Fallback: navigate to #rsvp
+                                window.parent.location.hash = 'rsvp';
+                            }
+                        }
+                    } catch (error) {
+                        // Cross-origin restriction - fallback to hash navigation
+                        console.log('Cannot access parent due to cross-origin policy');
+                        window.parent.location.href = window.parent.location.href.split('#')[0] + '#rsvp';
                     }
                 });
             }
