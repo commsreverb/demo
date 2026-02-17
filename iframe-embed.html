@@ -54,7 +54,7 @@
                 </div>
                 <a href="#showreel" target="_parent">Showreel</a>
                 <a href="#about" target="_parent">About</a>
-                <a href="https://htmltest.splashthat.com/#rsvp" target="_parent">RSVP</a>
+                <a href="#rsvp" class="rsvp-trigger">RSVP</a>
                 <a href="https://airtable.com/apprkLiYfJMSDKZgc/shrmwGeK8rhYIhivL" target="_blank" class="nav-cta">Request a Project</a>
             </div>
         </div>
@@ -89,5 +89,19 @@
     </section>
 
     <script src="script.js"></script>
+    <script>
+        // Handle RSVP link to trigger Splashthat modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const rsvpLink = document.querySelector('.rsvp-trigger');
+            if (rsvpLink) {
+                rsvpLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (window.parent && window.parent !== window) {
+                        window.parent.location.hash = 'rsvp';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
