@@ -97,7 +97,19 @@
                 rsvpLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (window.parent && window.parent !== window) {
-                        window.parent.location.hash = 'rsvp';
+                        try {
+                            // Set hash and trigger hashchange event
+                            window.parent.location.hash = 'rsvp';
+                            // Trigger hashchange event manually
+                            const hashChangeEvent = new HashChangeEvent('hashchange', {
+                                newURL: window.parent.location.href,
+                                oldURL: window.parent.location.href.replace('#rsvp', '')
+                            });
+                            window.parent.dispatchEvent(hashChangeEvent);
+                        } catch (e) {
+                            // If cross-origin, try postMessage
+                            window.parent.postMessage({ action: 'rsvp', hash: 'rsvp' }, '*');
+                        }
                     }
                 });
             }
