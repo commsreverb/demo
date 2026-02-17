@@ -486,6 +486,21 @@ body.guestlist-active {
     color: var(--reverb-coral);
 }
 
+.livestream-link {
+    background: var(--reverb-coral);
+    color: var(--black) !important;
+    padding: 10px 24px;
+    border-radius: 500px;
+    font-weight: 700;
+    transition: all 0.3s;
+    border: 2px solid var(--black);
+}
+
+.livestream-link:hover {
+    background: var(--reverb-lime);
+    transform: scale(1.05);
+}
+
 .nav-cta {
     background: var(--black);
     color: var(--white) !important;

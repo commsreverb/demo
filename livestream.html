@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Livestream — Reverb</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .livestream-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .livestream-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1920px;
+            max-height: 1080px;
+        }
+
+        .livestream-embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .livestream-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 500px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 1000;
+            transition: all 0.3s;
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        .back-button:hover {
+            background: #D4E157;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 #000;
+        }
+
+        /* Fullscreen on smaller screens */
+        @media (max-width: 1920px) {
+            .livestream-wrapper {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">← Back to Site</a>
+
+    <div class="livestream-container">
+        <div class="livestream-wrapper">
+            <div class="livestream-embed">
+                <!-- REPLACE THIS IFRAME WITH YOUR ACTUAL LIVESTREAM EMBED -->
+                <!-- Example: YouTube Live, Vimeo Live, or custom streaming platform -->
+                <iframe
+                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+
+                <!-- Alternative: Use your Google Drive video -->
+                <!-- <iframe src="https://drive.google.com/file/d/1ZKnvVxjroel_CpI0_I57FqHdZEGhUt1P/preview" allow="autoplay"></iframe> -->
+
+                <!-- Alternative: Direct video file -->
+                <!-- <video controls autoplay>
+                    <source src="your-livestream.mp4" type="video/mp4">
+                </video> -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
