@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Reverb — Spotify's Creative Production Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Iframe-specific overrides */
+        body {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Remove landing overlay for iframe */
+        .landing-overlay {
+            display: none !important;
+        }
+
+        /* Ensure navbar is visible */
+        .navbar {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Adjust hero for iframe */
+        .hero {
+            min-height: 600px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="Reverb logo.png" alt="Reverb">
+            </a>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#work" target="_parent">Work</a>
+                    <div class="dropdown-content">
+                        <a href="#work" target="_parent" data-filter="all">All Work</a>
+                        <a href="#work" target="_parent" data-filter="video">Video</a>
+                        <a href="#work" target="_parent" data-filter="microsite">Microsites</a>
+                        <a href="#work" target="_parent" data-filter="animation">Animation</a>
+                        <a href="#work" target="_parent" data-filter="design">Design</a>
+                        <a href="#work" target="_parent" data-filter="events">Events</a>
+                    </div>
+                </div>
+                <a href="#showreel" target="_parent">Showreel</a>
+                <a href="#about" target="_parent">About</a>
+                <a href="#rsvp" target="_parent">RSVP</a>
+                <a href="https://airtable.com/apprkLiYfJMSDKZgc/shrmwGeK8rhYIhivL" target="_blank" class="nav-cta">Request a Project</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-video-bg">
+            <video autoplay loop muted playsinline>
+                <source src="showreel-2025.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-container">
+            <div class="hero-eyebrow">Spotify's Creative Production Studio</div>
+            <h1 class="hero-title">We bring Spotify's<br>biggest stories to life</h1>
+            <p class="hero-description">From high-profile interviews with Trevor Noah and Daniel Ek to interactive microsites and stunning animations—Reverb is the creative force behind Spotify's most memorable moments.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Projects in 2024</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">Global Studios</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">LON • NYC • STO</div>
+                    <div class="stat-label">Our Locations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
